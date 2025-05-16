@@ -63,11 +63,13 @@ namespace SAIN
             string category = "SAIN Editor";
             OpenEditorButton = Config.Bind(category, "Open Editor", false, "Opens the Editor on press");
             OpenEditorConfigEntry = Config.Bind(category, "Open Editor Shortcut", new KeyboardShortcut(KeyCode.F6), "The keyboard shortcut that toggles editor");
+            RayCastTestEntry = Config.Bind(category, "RayCast Test", new KeyboardShortcut(KeyCode.Quote), "Enables the RayCast test");
         }
 
         public static ConfigEntry<bool> OpenEditorButton { get; private set; }
 
         public static ConfigEntry<KeyboardShortcut> OpenEditorConfigEntry { get; private set; }
+        public static ConfigEntry<KeyboardShortcut> RayCastTestEntry { get; private set; }
 
         private List<ModulePatch> SainPatches => [
             new Patches.Generic.StopRefillMagsPatch(),

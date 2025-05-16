@@ -1,10 +1,14 @@
 ﻿using BepInEx;
+using Comfort.Common;
+using EFT;
 using EFT.Console.Core;
 using EFT.UI;
 using SAIN.Editor.Util;
+using SAIN.Helpers;
 using SAIN.Plugin;
 using SAIN.Preset;
 using System;
+using Unity.Collections;
 using UnityEngine;
 using static SAIN.Editor.RectLayout;
 using static SAIN.Editor.SAINLayout;
@@ -71,6 +75,63 @@ namespace SAIN.Editor
                     SAINPlugin.OpenEditorButton.Value = false;
                 }
                 ToggleGUI();
+            }
+            
+            if (SAINPlugin.RayCastTestEntry.Value.IsDown())
+            {
+                GameWorld gameWorld = Singleton<GameWorld>.Instance;
+                Player player = gameWorld?.MainPlayer;
+                if (player != null)
+                {
+                    int totalRaycasts = 3;
+
+                    NativeArray<RaycastHit> _hits = new NativeArray<RaycastHit>(totalRaycasts, Allocator.TempJob);
+                    NativeArray<RaycastCommand> _commands = new NativeArray<RaycastCommand>(totalRaycasts, Allocator.TempJob);
+
+                    
+                    Unity.Jobs.JobHandle _handle = RaycastCommand.ScheduleBatch(_commands, _hits, 24);
+
+                    float len = 10f;
+                    Vector3 start = player.Transform.position + Vector3.up * 1.65f;
+                    Vector3 dir = player.Transform.forward; // forward direction is normal, ie: length 1
+
+                    _commands[0] = new RaycastCommand(start, dir, new QueryParameters
+                    {
+                        layerMask = LayerMaskClass.HighPolyWithTerrainMask
+                    }, len); // length 10
+                    
+                     _commands[1] = new RaycastCommand(start, dir*len, new QueryParameters
+                    {
+                        layerMask = LayerMaskClass.HighPolyWithTerrainMask
+                    }, 1f); // still length 10
+                    
+                     _commands[2] = new RaycastCommand(start, dir*len, new QueryParameters
+                    {
+                        layerMask = LayerMaskClass.HighPolyWithTerrainMask
+                    }, len); // will end up with a length 100
+
+                    DebugGizmos.Line(start, start + dir * len, Color.red); // length 10 indicator
+                    DebugGizmos.Line(start, start + dir * len * len, Color.green); // length 100 indicator
+
+                    _handle.Complete();
+                    // AnalyzeHits(_enemies, _hits, enemyCount, partCount);
+
+                    for (int i = 0; i < _hits.Length; i++)
+                    {
+                        RaycastHit hit = _hits[i];
+                        if (hit.collider != null)
+                        {
+                            Logger.LogInfo($"Hit {i}: {hit.collider.name} at {hit.point}");
+                        }
+                        else
+                        {
+                            Logger.LogInfo($"Hit {i}: null");
+                        }
+                    }
+
+                    _commands.Dispose();
+                    _hits.Dispose();
+                }
             }
         }
 
