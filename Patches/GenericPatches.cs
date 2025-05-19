@@ -28,7 +28,7 @@ namespace SAIN.Patches.Generic
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotReload), "method_1");
+            return AccessTools.Method(typeof(BotReload), nameof(BotReload.method_1));
         }
 
         [PatchPrefix]
@@ -42,7 +42,7 @@ namespace SAIN.Patches.Generic
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(GClass567), "SetEnvironment");
+            return AccessTools.Method(typeof(GClass567), nameof(GClass567.SetEnvironment));
         }
 
         [PatchPostfix]
@@ -56,7 +56,7 @@ namespace SAIN.Patches.Generic
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotsGroup), "AddPointToSearch");
+            return AccessTools.Method(typeof(BotsGroup), nameof(BotsGroup.AddPointToSearch));
         }
 
         [PatchPrefix]
@@ -70,7 +70,7 @@ namespace SAIN.Patches.Generic
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotMemoryClass), "SetPanicPoint");
+            return AccessTools.Method(typeof(BotMemoryClass), nameof(BotMemoryClass.SetPanicPoint));
         }
 
         [PatchPrefix]
@@ -84,7 +84,7 @@ namespace SAIN.Patches.Generic
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.PropertyGetter(typeof(EnemyInfo), "HaveSeen");
+            return AccessTools.PropertyGetter(typeof(EnemyInfo), nameof(EnemyInfo.HaveSeen));
         }
 
         [PatchPostfix]
@@ -122,7 +122,7 @@ namespace SAIN.Patches.Generic
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EnemyInfo), "ShallKnowEnemy");
+            return AccessTools.Method(typeof(EnemyInfo), nameof(EnemyInfo.ShallISuppress));
         }
 
         [PatchPostfix]
@@ -135,43 +135,13 @@ namespace SAIN.Patches.Generic
             var enemy = botComponent.EnemyController.CheckAddEnemy(__instance.Person);
             __result = enemy?.EnemyKnown == true;
         }
-
-        public static bool BotsGroupSenseRecently(EnemyInfo enemyInfo)
-        {
-            BotsGroup group = enemyInfo.GroupOwner;
-            for (int i = 0; i < group.MembersCount; i++)
-            {
-                if (SAINEnableClass.GetSAIN(group.Member(i), out BotComponent sain)
-                    && EnemySenseRecently(sain, enemyInfo))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public static bool EnemySenseRecently(BotComponent sain, EnemyInfo enemyInfo)
-        {
-            Enemy myEnemy = sain.EnemyController.CheckAddEnemy(enemyInfo.Person);
-            return myEnemy?.CheckValid() == true && myEnemy.EnemyKnown;
-        }
-    }
-
-    public enum KnowEnemyReason
-    {
-        None = 0,
-        HeardRecent = 1,
-        SeenRecent = 2,
-        SquadHeardRecent = 3,
-        SquadSeenRecent = 4,
     }
 
     internal class ShallKnowEnemyLatePatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EnemyInfo), "ShallKnowEnemyLate");
+            return AccessTools.Method(typeof(EnemyInfo), nameof(EnemyInfo.ShallKnowEnemyLate));
         }
 
         [PatchPostfix]
@@ -190,7 +160,7 @@ namespace SAIN.Patches.Generic
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotsController), "method_5");
+            return AccessTools.Method(typeof(BotsController), nameof(BotsController.method_5));
         }
 
         [PatchPrefix]
@@ -212,7 +182,7 @@ namespace SAIN.Patches.Generic
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotsController), "method_3");
+            return AccessTools.Method(typeof(BotsController), nameof(BotsController.method_3));
         }
 
         [PatchPrefix]

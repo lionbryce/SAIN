@@ -211,59 +211,6 @@ namespace SAIN.Patches.Shoot.Aim
         }
     }
 
-    internal class ScatterPatch : ModulePatch
-    {
-        protected override MethodBase GetTargetMethod()
-        {
-            return AccessTools.Method(typeof(BotAimingClass), nameof(BotAimingClass.method_9));
-        }
-
-        [PatchPrefix]
-        public static void PatchPrefix(BotAimingClass __instance, ref float additionCoef)
-        {
-            if (SAINEnableClass.GetSAIN(__instance.botOwner_0, out var bot))
-            {
-            }
-        }
-    }
-
-    internal class HitEffectPatch : ModulePatch
-    {
-        protected override MethodBase GetTargetMethod()
-        {
-            return AccessTools.Method(typeof(BotAimingClass), nameof(BotAimingClass.GetHit));
-        }
-
-        [PatchPrefix]
-        public static bool PatchPrefix(BotAimingClass __instance, DamageInfoStruct DamageInfoStruct)
-        {
-            if (SAINPlugin.IsBotExluded(__instance.botOwner_0))
-            {
-                return true;
-            }
-
-            return false;
-        }
-    }
-
-    internal class WeaponPresetPatch : ModulePatch
-    {
-        protected override MethodBase GetTargetMethod()
-        {
-            return AccessTools.Method(typeof(BotWeaponManager), nameof(BotWeaponManager.UpdateHandsController));
-        }
-
-        [PatchPostfix]
-        public static void Patch(BotWeaponManager __instance, IHandsController handsController)
-        {
-            IFirearmHandsController firearmHandsController;
-            if ((firearmHandsController = (handsController as IFirearmHandsController)) != null)
-            {
-                SAINBotController.Instance?.BotChangedWeapon(__instance.botOwner_0, firearmHandsController);
-            }
-        }
-    }
-
     public class AimTimePatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod()

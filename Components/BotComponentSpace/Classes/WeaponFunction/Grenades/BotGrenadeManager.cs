@@ -9,34 +9,29 @@ namespace SAIN.SAINComponent.Classes.WeaponFunction
 
         public GrenadeThrowDecider GrenadeThrowDecider { get; }
         public GrenadeReactionClass GrenadeReactionClass { get; }
-        public BotFlashbangedClass BotFlash { get; }
 
         public BotGrenadeManager(BotComponent sain) : base(sain)
         {
             GrenadeThrowDecider = new GrenadeThrowDecider(this);
             GrenadeReactionClass = new GrenadeReactionClass(this);
-            BotFlash = new BotFlashbangedClass(this);
         }
 
         public void Init()
         {
             GrenadeThrowDecider.Init();
             GrenadeReactionClass.Init();
-            BotFlash.Init();
         }
 
         public void Update()
         {
             GrenadeThrowDecider.Update();
             GrenadeReactionClass.Update();
-            BotFlash.Update();
         }
 
         public void Dispose()
         {
             GrenadeThrowDecider.Dispose();
             GrenadeReactionClass.Dispose();
-            BotFlash.Dispose();
         }
     }
 }

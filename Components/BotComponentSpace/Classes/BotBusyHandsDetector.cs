@@ -42,8 +42,8 @@ namespace SAIN.SAINComponent.Classes
             if (_nextCheckTime < Time.time)
             {
                 _nextCheckTime = Time.time + CHECK_FREQ;
-                checkBusyHands();
-                checkBusyTooLong();
+                //checkBusyHands();
+                //checkBusyTooLong();
             }
         }
 

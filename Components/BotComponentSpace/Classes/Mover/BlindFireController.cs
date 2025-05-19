@@ -18,7 +18,7 @@ namespace SAIN.SAINComponent.Classes.Mover
             base.SubscribeToPreset(null);
         }
 
-        private bool checkAllowBlindFire()
+        private bool CheckAllowBlindFire()
         {
             if (!Bot.SAINLayersActive ||
                 !BotOwner.WeaponManager.IsReady ||
@@ -63,13 +63,13 @@ namespace SAIN.SAINComponent.Classes.Mover
             {
                 if (_blindFire != 0)
                 {
-                    tryShoot();
+                    TryShoot();
                 }
                 return;
             }
             _nextBlindFireCheck = Time.time + 0.2f;
 
-            if (!checkAllowBlindFire())
+            if (!CheckAllowBlindFire())
             {
                 ResetBlindFire();
                 return;
@@ -114,10 +114,10 @@ namespace SAIN.SAINComponent.Classes.Mover
                 Vector3 blindFireDirection = Vector.Rotate(targetPos.Value - start, Vector.RandomRange(3), Vector.RandomRange(3), Vector.RandomRange(3));
                 BlindFireTargetPos = blindFireDirection + start;
             }
-            tryShoot();
+            TryShoot();
         }
 
-        private void tryShoot()
+        private void TryShoot()
         {
             if (Bot.ManualShoot.TryShoot(true, BlindFireTargetPos, false, EShootReason.Blindfire))
             {

@@ -98,25 +98,4 @@ namespace SAIN.Patches.Components
             }
         }
     }
-
-    internal class UpdateCoreSettingsPatch : ModulePatch
-    {
-        protected override MethodBase GetTargetMethod()
-        {
-            return AccessTools.Method(typeof(EFTSettingsLoadClass), nameof(EFTSettingsLoadClass.Load));
-        }
-
-        [PatchPostfix]
-        public static void Patch()
-        {
-            try
-            {
-                EFTCoreSettings.UpdateCoreSettings();
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e);
-            }
-        }
-    }
 }

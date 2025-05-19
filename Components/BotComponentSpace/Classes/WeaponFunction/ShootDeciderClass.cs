@@ -5,7 +5,6 @@ using SAIN.SAINComponent.Classes.EnemyClasses;
 using SAIN.SAINComponent.Classes.Info;
 using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace SAIN.SAINComponent.Classes
 {
@@ -88,51 +87,6 @@ namespace SAIN.SAINComponent.Classes
                 {
                     tryShoot(enemy);
                 }
-            }
-        }
-
-        public void AllowUnpauseMove(bool value)
-        {
-            _shallUnpause = value;
-        }
-
-        private bool tryPauseForShoot(bool shallUnpause)
-        {
-            if (ShallPauseForShoot())
-            {
-                if (_nextPauseMoveTime < Time.time &&
-                    !IsMovementPaused)
-                {
-                    _nextPauseMoveTime = Time.time + Random.Range(_pauseMoveFrequencyMin, _pauseMoveFrequencyMax);
-                    Bot.Mover.PauseMovement(Random.Range(_pauseMoveDurationMin, _pauseMoveDurationMax));
-                }
-                if (!IsMovementPaused)
-                {
-                    BotOwner.AimingManager.CurrentAiming?.LoseTarget();
-                    return false;
-                }
-            }
-            else if (IsMovementPaused && _shallUnpause)
-            {
-                //BotOwner.Mover.MovementResume();
-            }
-            return true;
-        }
-
-        public bool ShallPauseForShoot()
-        {
-            float maxPointFireDist = Bot.Info.FileSettings.Shoot.MaxPointFireDistance;
-            return
-                Bot.Enemy != null &&
-                Bot.Enemy.RealDistance > maxPointFireDist &&
-                IsAiming;
-        }
-
-        public bool IsAiming
-        {
-            get
-            {
-                return BotOwner?.ShootData?.ShootController?.IsAiming == true || BotOwner.AimingManager.CurrentAiming.IsReady == true;
             }
         }
 
@@ -291,35 +245,6 @@ namespace SAIN.SAINComponent.Classes
             return aimData.IsReady;
         }
 
-        private const float MIN_ANGLE_TO_START_AIM = 20f;
-        private const float MIN_ANGLE_TO_KEEP_AIMING = 50f;
-        private const float TURN_SPEED_START_AIM = 200f;
-        private const float TURN_SPEED_AIMING = 250f;
-
-        private bool checkSteerDirection(float maxAngle, Vector3 toPoint)
-        {
-            Vector3 lookdirection = Bot.LookDirection;
-            Vector3 directionToTarget = (toPoint - Bot.Transform.WeaponRoot).normalized;
-            float angle = Vector3.Angle(directionToTarget, lookdirection);
-            return angle <= maxAngle;
-        }
-
-        private Vector3? blindShootTarget(Enemy enemy)
-        {
-            Vector3? result = null;
-            if (!enemy.IsVisible
-                    && enemy.Status.HeardRecently
-                    && enemy.InLineOfSight)
-            {
-                EnemyPlace lastKnown = enemy.KnownPlaces.LastKnownPlace;
-                if (lastKnown != null && lastKnown.CheckLineOfSight(BotOwner.LookSensor._headPoint, LayerMaskClass.HighPolyWithTerrainMask))
-                {
-                    result = lastKnown.Position + Vector3.up + UnityEngine.Random.onUnitSphere;
-                }
-            }
-            return result;
-        }
-
         private Vector3? getTarget(out Enemy enemy)
         {
             enemy = Bot.Enemy;
@@ -355,10 +280,6 @@ namespace SAIN.SAINComponent.Classes
                 Vector3? partToShoot = getEnemyPartToShoot(enemy.EnemyInfo);
                 Vector3? modifiedTarget = checkYValue(centerMass, partToShoot);
                 Vector3? finalTarget = modifiedTarget ?? partToShoot ?? centerMass;
-                if (finalTarget != null)
-                {
-                    _targetEnemy = enemy;
-                }
 
                 return finalTarget;
             }
@@ -429,19 +350,11 @@ namespace SAIN.SAINComponent.Classes
         }
 
         private bool _shooting;
-        public bool IsMovementPaused => BotOwner?.Mover.Pause == true;
-        private Enemy _targetEnemy;
         private EquipmentSlot optimalSlot;
         private float _nextCheckOptimalTime;
         private float _lastDistance;
         private float _nextGetDistTime;
         private float _nextChangeWeaponTime;
-        private float _nextPauseMoveTime;
-        private float _pauseMoveFrequencyMin = 2f;
-        private float _pauseMoveFrequencyMax = 4f;
-        private float _pauseMoveDurationMin = 0.5f;
-        private float _pauseMoveDurationMax = 1f;
-        private bool _shallUnpause = true;
         private float _changeAimTimer;
     }
 }

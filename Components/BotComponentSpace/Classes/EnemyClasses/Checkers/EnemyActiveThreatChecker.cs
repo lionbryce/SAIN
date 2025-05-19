@@ -3,15 +3,6 @@ using UnityEngine;
 
 namespace SAIN.Components.BotComponentSpace.Classes.EnemyClasses
 {
-    public enum EEnemyThreatLevel
-    {
-        None,
-        Low,
-        Medium,
-        High,
-        Extreme,
-    }
-
     public class EnemyActiveThreatChecker : EnemyBase, IBotClass
     {
         public bool ActiveThreat { get; private set; }

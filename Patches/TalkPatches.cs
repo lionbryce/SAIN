@@ -11,7 +11,7 @@ namespace SAIN.Patches.Talk
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Player), "ApplyHitDebuff");
+            return AccessTools.Method(typeof(Player), nameof(Player.ApplyHitDebuff));
         }
 
         [PatchPrefix]
@@ -95,7 +95,7 @@ namespace SAIN.Patches.Talk
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotTalk), "Say");
+            return AccessTools.Method(typeof(BotTalk), nameof(BotTalk.Say));
         }
 
         [PatchPrefix]
@@ -142,7 +142,7 @@ namespace SAIN.Patches.Talk
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotTalk), "ManualUpdate");
+            return AccessTools.Method(typeof(BotTalk), nameof(BotTalk.ManualUpdate));
         }
 
         [PatchPrefix]

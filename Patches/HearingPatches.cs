@@ -14,27 +14,11 @@ using UnityEngine;
 
 namespace SAIN.Patches.Hearing
 {
-    public class VoicePatch : ModulePatch
-    {
-        protected override MethodBase GetTargetMethod()
-        {
-            return AccessTools.Method(typeof(PhraseSpeakerClass), "Init");
-        }
-
-        [PatchPrefix]
-        public static void Patch(PhraseSpeakerClass __instance, ref EPlayerSide side, ref int id, string playerVoice)
-        {
-            //side = EPlayerSide.Usec;
-            //playerVoice = "Usec_3";
-            //Logger.LogInfo($"{playerVoice}");
-        }
-    }
-
     public class GrenadeCollisionPatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Grenade), "OnCollisionHandler");
+            return AccessTools.Method(typeof(Grenade), nameof(Grenade.OnCollisionHandler));
         }
 
         [PatchPostfix]
@@ -53,7 +37,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Throwable), "OnCollisionHandler");
+            return AccessTools.Method(typeof(Throwable), nameof(Throwable.OnCollisionHandler));
         }
 
         [PatchPostfix]
@@ -67,7 +51,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(TreeInteractive), "method_0");
+            return AccessTools.Method(typeof(TreeInteractive), nameof(TreeInteractive.method_0));
         }
 
         [PatchPostfix]
@@ -90,7 +74,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(MovementContext), "StartInteraction");
+            return AccessTools.Method(typeof(MovementContext), nameof(MovementContext.StartInteraction));
         }
 
         [PatchPrefix]
@@ -105,7 +89,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(MovementContext), "PlayBreachSound");
+            return AccessTools.Method(typeof(MovementContext), nameof(MovementContext.PlayBreachSound));
         }
 
         [PatchPrefix]
@@ -120,7 +104,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(MovementContext), "method_2");
+            return AccessTools.Method(typeof(MovementContext), nameof(MovementContext.method_2));
         }
 
         [PatchPrefix]
@@ -140,7 +124,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Player), "PlayStepSound");
+            return AccessTools.Method(typeof(Player), nameof(Player.PlayStepSound));
         }
 
         [PatchPostfix]
@@ -163,7 +147,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(MovementContext), "method_1");
+            return AccessTools.Method(typeof(MovementContext), nameof(MovementContext.method_1));
         }
 
         [PatchPrefix]
@@ -194,7 +178,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Player), "DefaultPlay");
+            return AccessTools.Method(typeof(Player), nameof(Player.DefaultPlay));
         }
 
         [PatchPostfix]
@@ -233,7 +217,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Player.FirearmController), "DryShot");
+            return AccessTools.Method(typeof(Player.FirearmController), nameof(Player.FirearmController.DryShot));
         }
 
         [PatchPrefix]
@@ -248,7 +232,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotHearingSensor), "method_0");
+            return AccessTools.Method(typeof(BotHearingSensor), nameof(BotHearingSensor.method_0));
         }
 
         [PatchPrefix]
@@ -285,7 +269,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Player), "OnMakingShot");
+            return AccessTools.Method(typeof(Player), nameof(Player.OnMakingShot));
         }
 
         [PatchPrefix]
@@ -332,7 +316,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BaseSoundPlayer), "SoundAtPointEventHandler");
+            return AccessTools.Method(typeof(BaseSoundPlayer), nameof(BaseSoundPlayer.SoundAtPointEventHandler));
         }
 
         [PatchPrefix]
@@ -356,7 +340,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Player), "PlayToggleSound");
+            return AccessTools.Method(typeof(Player), nameof(Player.PlayToggleSound));
         }
 
         [PatchPostfix]
@@ -374,7 +358,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Player), "SpawnInHands");
+            return AccessTools.Method(typeof(Player), nameof(Player.SpawnInHands));
         }
 
         [PatchPostfix]
@@ -406,7 +390,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Player), "method_46");
+            return AccessTools.Method(typeof(Player), nameof(Player.method_46));
         }
 
         [PatchPostfix]
@@ -425,7 +409,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(Player), "PlaySoundBank");
+            return AccessTools.Method(typeof(Player), nameof(Player.PlaySoundBank));
         }
 
         [PatchPrefix]
@@ -519,7 +503,7 @@ namespace SAIN.Patches.Hearing
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EffectsCommutator), "PlayHitEffect");
+            return AccessTools.Method(typeof(EffectsCommutator), nameof(EffectsCommutator.PlayHitEffect));
         }
 
         [PatchPostfix]

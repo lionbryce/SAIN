@@ -1,10 +1,8 @@
 ﻿using Comfort.Common;
 using EFT;
-using HarmonyLib;
 using SAIN.Preset.GlobalSettings;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,13 +10,6 @@ namespace SAIN.SAINComponent.Classes.Debug
 {
     public class SAINBotUnstuckClass : BotBase, IBotClass
     {
-        static SAINBotUnstuckClass()
-        {
-            _pathControllerField = AccessTools.Field(typeof(BotMover), "_pathController");
-        }
-
-        private static readonly FieldInfo _pathControllerField;
-
         public SAINBotUnstuckClass(BotComponent sain) : base(sain)
         {
         }
@@ -26,7 +17,7 @@ namespace SAIN.SAINComponent.Classes.Debug
         public void Init()
         {
             base.SubscribeToPreset(null);
-            PathController = _pathControllerField.GetValue(BotOwner.Mover) as PathControllerClass;
+            PathController = BotOwner.Mover._pathController;
             DontUnstuckMe = DontUnstuckTheseTypes.Contains(Bot.Info.Profile.WildSpawnType);
         }
 

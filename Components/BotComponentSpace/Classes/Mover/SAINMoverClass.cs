@@ -294,12 +294,6 @@ namespace SAIN.SAINComponent.Classes.Mover
             return false;
         }
 
-        public SAINMovementPlan MovementPlan { get; private set; }
-
-        public NavMeshPath CurrentPath { get; private set; }
-
-        public float CurrentStamina => Player.Physical.Stamina.NormalValue;
-
         public bool SetTargetPose(float pose)
         {
             return Pose.SetTargetPose(pose);

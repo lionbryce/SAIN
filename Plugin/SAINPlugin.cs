@@ -83,16 +83,13 @@ namespace SAIN
             new Patches.Generic.AllowRequestPatch(),
             new Patches.Generic.FindRequestForMePatch(),
 
-            //new Patches.Generic.Fixes.HealCancelPatch(),
             new Patches.Generic.Fixes.StopSetToNavMeshPatch(),
             new Patches.Generic.Fixes.FightShallReloadFixPatch(),
             new Patches.Generic.Fixes.EnableVaultPatch(),
             new Patches.Generic.Fixes.BotMemoryAddEnemyPatch(),
             new Patches.Generic.Fixes.BotGroupAddEnemyPatch(),
-            //new Patches.Generic.Fixes.NoTeleportPatch(),
             new Patches.Generic.Fixes.FixItemTakerPatch(),
             new Patches.Generic.Fixes.FixItemTakerPatch2(),
-            //new Patches.Generic.Fixes.FixPatrolDataPatch(),
             new Patches.Generic.Fixes.RotateClampPatch(),
 
             new Patches.Movement.EncumberedPatch(),
@@ -109,7 +106,6 @@ namespace SAIN
             new Patches.Hearing.OnMakingShotPatch(),
             new Patches.Hearing.HearingSensorPatch(),
 
-            new Patches.Hearing.VoicePatch(),
             new Patches.Hearing.GrenadeCollisionPatch(),
             new Patches.Hearing.GrenadeCollisionPatch2(),
 
@@ -161,12 +157,9 @@ namespace SAIN
             new Patches.Shoot.Aim.SetAimStatusPatch(),
             new Patches.Shoot.Aim.AimOffsetPatch(),
             new Patches.Shoot.Aim.AimTimePatch(),
-            //new Patches.Shoot.Aim.WeaponPresetPatch(),
             new Patches.Shoot.Aim.ForceNoHeadAimPatch(),
             new Patches.Shoot.Aim.AimRotateSpeedPatch(),
 
-            //new Patches.Shoot.Grenades.DoThrowPatch(),
-            //new Patches.Shoot.Grenades.DisableSpreadPatch(),
             new Patches.Shoot.Grenades.ResetGrenadePatch(),
             new Patches.Shoot.Grenades.SetGrenadePatch(),
 
@@ -177,8 +170,6 @@ namespace SAIN
 
             new Patches.Components.AddBotComponentPatch(),
             new Patches.Components.AddGameWorldPatch(),
-            //new Patches.Components.AddLightComponentPatch(),
-            //new Patches.Components.AddLightComponentPatch2(),
             new Patches.Components.GetBotController(),
             new Patches.Components.GetBotSpawner(),
         ];

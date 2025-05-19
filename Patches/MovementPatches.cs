@@ -6,7 +6,6 @@ using SAIN.Preset.GlobalSettings;
 using SPT.Reflection.Patching;
 using System.Reflection;
 using UnityEngine;
-using PathFinderClass = GClass485;
 
 namespace SAIN.Patches.Movement
 {
@@ -14,7 +13,7 @@ namespace SAIN.Patches.Movement
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotGlobalLookData), "Update");
+            return AccessTools.Method(typeof(BotGlobalLookData), nameof(BotGlobalLookData.Update));
         }
 
         [PatchPostfix]
@@ -28,7 +27,7 @@ namespace SAIN.Patches.Movement
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotGlobalShootData), "Update");
+            return AccessTools.Method(typeof(BotGlobalShootData), nameof(BotGlobalShootData.Update));
         }
 
         [PatchPostfix]
@@ -43,7 +42,7 @@ namespace SAIN.Patches.Movement
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(PlayerPhysicalClass), "ConsumePoseLevelChange");
+            return AccessTools.Method(typeof(PlayerPhysicalClass), nameof(PlayerPhysicalClass.ConsumePoseLevelChange));
         }
 
         [PatchPrefix]
@@ -61,7 +60,7 @@ namespace SAIN.Patches.Movement
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(PlayerPhysicalClass), "Aim");
+            return AccessTools.Method(typeof(PlayerPhysicalClass), nameof(PlayerPhysicalClass.Aim));
         }
 
         [PatchPrefix]
@@ -79,11 +78,11 @@ namespace SAIN.Patches.Movement
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(PathFinderClass), "method_0");
+            return AccessTools.Method(typeof(GClass485), nameof(GClass485.method_0));
         }
 
         [PatchPrefix]
-        public static bool PatchPrefix(PathFinderClass __instance, BotOwner ___botOwner_0, Vector3 pos, bool slowAtTheEnd, bool getUpWithCheck)
+        public static bool PatchPrefix(GClass485 __instance, BotOwner ___botOwner_0, Vector3 pos, bool slowAtTheEnd, bool getUpWithCheck)
         {
             if (SAINPlugin.IsBotExluded(___botOwner_0))
             {
@@ -116,7 +115,7 @@ namespace SAIN.Patches.Movement
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BotMover), "DoProne");
+            return AccessTools.Method(typeof(BotMover), nameof(BotMover.DoProne));
         }
 
         [PatchPrefix]
@@ -139,7 +138,7 @@ namespace SAIN.Patches.Movement
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(BasePhysicalClass), "UpdateWeightLimits");
+            return AccessTools.Method(typeof(BasePhysicalClass), nameof(BasePhysicalClass.UpdateWeightLimits));
         }
 
         [PatchPrefix]
@@ -220,7 +219,7 @@ namespace SAIN.Patches.Movement
     {
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(WorldInteractiveObject), "method_4");
+            return AccessTools.Method(typeof(WorldInteractiveObject), nameof(WorldInteractiveObject.method_4));
         }
 
         [PatchPrefix]
