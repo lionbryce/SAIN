@@ -68,8 +68,11 @@ namespace SAIN.SAINComponent.Classes.WeaponFunction
 
         public bool GetDecision(Enemy enemy, out string reason)
         {
-            if (BotOwner.WeaponManager?.Grenades.ThrowindNow == true)
-            {
+            if (enemy.IsAI && !GlobalSettings.General.BotVsBotGrenade) {
+                reason = "noGoodTarget";
+                return false;
+            }
+            if (BotOwner.WeaponManager?.Grenades.ThrowindNow == true) {
                 reason = "throwingNow";
                 return true;
             }

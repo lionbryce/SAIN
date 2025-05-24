@@ -263,12 +263,10 @@ namespace SAIN.SAINComponent.Classes.Mover
                 float distToCurrent = float.MaxValue;
                 while (distToCurrent > _moveSettings.BotSprintCornerReachDist)
                 {
-                    /*
                     if (BotOwner.Mover.IsMoving)
                     {
                         BotOwner.Mover.Stop(); // Backwards sprint / moonwalking fix
                     }
-                    */
                     distToCurrent = DistanceToCurrentCornerSqr();
                     DistanceToCurrentCorner = distToCurrent;
 

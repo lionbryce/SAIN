@@ -35,6 +35,9 @@ namespace SAIN.Preset.GlobalSettings.Categories
             //Brain.BossZryachiy,
             Brain.Killa,
             Brain.SectantPriest,
+            Brain.BossBoar,
+            Brain.BossKolontay,
+            Brain.BossPartisan,
         ];
 
         public static readonly Brain[] Followers =
@@ -50,6 +53,12 @@ namespace SAIN.Preset.GlobalSettings.Categories
             Brain.SectantWarrior,
             Brain.BigPipe,
             Brain.BirdEye,
+            Brain.FollowerBoar,
+            Brain.FollowerBoarClose1,
+            Brain.FollowerBoarClose2,
+            Brain.BossBoarSniper,
+            Brain.FollowerKolontayAssault,
+            Brain.FollowerKolontaySecurity,
         ];
 
         public static readonly Brain[] Goons =

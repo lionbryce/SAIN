@@ -8,6 +8,10 @@ namespace SAIN.Preset.GlobalSettings
     {
         [Name("Bots Use Grenades")]
         public bool BotsUseGrenades = true;
+        
+        [Name("Bots Use Grenades Vs Other Bots")]
+        [Description("Bots are not as careful with grenades as players, this will prevent accidental deaths fighting other bots.")]
+        public bool BotVsBotGrenade = true;
 
         [Name("Bot Weight Effects")]
         [Description("Bots are properly affected by the weight of their equipment and loot. Requires raid restart for existing bots, as it applies on bot creation.")]

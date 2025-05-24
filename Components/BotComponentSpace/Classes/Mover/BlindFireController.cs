@@ -7,12 +7,8 @@ using UnityEngine;
 
 namespace SAIN.SAINComponent.Classes.Mover
 {
-    public class BlindFireController : BotBase, IBotClass
+    public class BlindFireController(BotComponent sain) : BotBase(sain), IBotClass
     {
-        public BlindFireController(BotComponent sain) : base(sain)
-        {
-        }
-
         public void Init()
         {
             base.SubscribeToPreset(null);

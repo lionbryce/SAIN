@@ -74,7 +74,6 @@ namespace SAIN.Helpers
             switch (type)
             {
                 case WildSpawnType.bossBoar:
-                case WildSpawnType.bossBoarSniper:
                 case WildSpawnType.bossTagilla:
                 case WildSpawnType.bossKilla:
                 case WildSpawnType.bossBully:
@@ -83,6 +82,7 @@ namespace SAIN.Helpers
                 case WildSpawnType.bossKojaniy:
                 case WildSpawnType.bossKolontay:
                 case WildSpawnType.bossZryachiy:
+                case WildSpawnType.bossPartisan:
                     return true;
 
                 default:
@@ -114,6 +114,7 @@ namespace SAIN.Helpers
                 case WildSpawnType.followerBoar:
                 case WildSpawnType.followerBoarClose1:
                 case WildSpawnType.followerBoarClose2:
+                case WildSpawnType.bossBoarSniper:
                 case WildSpawnType.followerBully:
                 case WildSpawnType.followerGluharAssault:
                 case WildSpawnType.followerGluharScout:

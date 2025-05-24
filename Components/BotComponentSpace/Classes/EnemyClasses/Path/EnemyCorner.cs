@@ -2,20 +2,11 @@
 
 namespace SAIN.SAINComponent.Classes.EnemyClasses
 {
-    public class EnemyCorner
+    public class EnemyCorner(Vector3 groundPoint, float signedAngle, int pathIndex)
     {
-        public EnemyCorner(Vector3 groundPoint, float signedAngle, int pathIndex)
-        {
-            GroundPosition = groundPoint;
-            SignedAngleToTarget = signedAngle;
-            _nextLookPointTime = 0f;
-            _blindCornerLookPoint = groundPoint;
-            PathIndex = pathIndex;
-        }
-
-        public int PathIndex { get; }
-        public Vector3 GroundPosition { get; }
-        public float SignedAngleToTarget { get; }
+        public int PathIndex { get; } = pathIndex;
+        public Vector3 GroundPosition { get; } = groundPoint;
+        public float SignedAngleToTarget { get; } = signedAngle;
 
         public Vector3 EyeLevelCorner(Vector3 eyePos, Vector3 botPosition)
         {
@@ -32,8 +23,8 @@ namespace SAIN.SAINComponent.Classes.EnemyClasses
             return _blindCornerLookPoint;
         }
 
-        private Vector3 _blindCornerLookPoint;
-        private float _nextLookPointTime;
+        private Vector3 _blindCornerLookPoint = groundPoint;
+        private float _nextLookPointTime = 0f;
         const float LOOK_POINT_FREQUENCY = 1f / 30f;
     }
 }

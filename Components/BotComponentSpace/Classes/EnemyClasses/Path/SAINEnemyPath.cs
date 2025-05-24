@@ -80,7 +80,6 @@ namespace SAIN.SAINComponent.Classes.EnemyClasses
         public void Init()
         {
             Enemy.Events.OnEnemyKnownChanged.OnToggle += OnEnemyKnownChanged;
-            _blindCornerFinder.Init();
         }
 
         public void OnEnemyKnownChanged(bool known, Enemy enemy)
@@ -178,7 +177,7 @@ namespace SAIN.SAINComponent.Classes.EnemyClasses
                     case NavMeshPathStatus.PathComplete:
                         findCorners(enemyPosition, PathToEnemyStatus, corners);
                         if (isCurrentEnemy)
-                            yield return _blindCornerFinder.FindBlindCorner2(corners, enemyPosition);
+                            yield return _blindCornerFinder.FindBlindCorner(corners, enemyPosition);
                         else
                             EnemyCorners.Remove(ECornerType.Blind);
 

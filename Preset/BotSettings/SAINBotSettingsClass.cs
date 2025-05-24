@@ -262,6 +262,7 @@ namespace SAIN.Preset.BotSettings
                 { WildSpawnType.assaultGroup, 0.35f },
 
                 { WildSpawnType.bossBully, 0.75f },
+                { WildSpawnType.bossBoar, 0.75f },
                 { WildSpawnType.bossGluhar, 0.75f },
                 { WildSpawnType.bossKilla, 0.75f },
                 { WildSpawnType.bossSanitar, 0.75f },
@@ -281,6 +282,12 @@ namespace SAIN.Preset.BotSettings
                 { WildSpawnType.followerSanitar, 0.55f },
                 { WildSpawnType.followerTagilla, 0.55f },
                 { WildSpawnType.followerZryachiy, 0.55f },
+                { WildSpawnType.followerBoar, 0.55f },
+                { WildSpawnType.followerBoarClose1, 0.55f },
+                { WildSpawnType.followerBoarClose2, 0.55f },
+                { WildSpawnType.bossBoarSniper, 0.55f },
+                { WildSpawnType.followerKolontayAssault, 0.55f },
+                { WildSpawnType.followerKolontaySecurity, 0.55f },
 
                 { WildSpawnType.followerBigPipe, 1f },
                 { WildSpawnType.followerBirdEye, 1f },

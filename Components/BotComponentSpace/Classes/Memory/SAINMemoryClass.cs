@@ -12,7 +12,6 @@ namespace SAIN.SAINComponent.Classes.Memory
         public Enemy LastUnderFireEnemy { get; private set; }
         public Vector3 UnderFireFromPosition { get; set; }
 
-        public EnemyTargetsClass EnemyTargets { get; } = new EnemyTargetsClass();
         public SAINExtract Extract { get; } = new SAINExtract();
         public HealthTracker Health { get; private set; }
         public LocationTracker Location { get; private set; }
@@ -76,16 +75,11 @@ namespace SAIN.SAINComponent.Classes.Memory
             if (BotOwner.Memory.IsUnderFire &&
                 (LastUnderFireSource == null || LastUnderFireSource.HealthController.IsAlive == false))
             {
-                _underFireTimeField.SetValue(BotOwner.Memory, Time.time);
+                //Reset the UnderFireTime
+                BotOwner.Memory.float_4 = Time.time;
             }
         }
 
-        static SAINMemoryClass()
-        {
-            _underFireTimeField = AccessTools.Field(typeof(BotMemoryClass), "float_4");
-        }
-
         private float _nextCheckDeadTime;
-        private static FieldInfo _underFireTimeField;
     }
 }

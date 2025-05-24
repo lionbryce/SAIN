@@ -11,8 +11,6 @@ namespace SAIN.Patches.Shoot.RateOfFire
 {
     public class FullAutoPatch : ModulePatch
     {
-        private static PropertyInfo _ShootData;
-
         protected override MethodBase GetTargetMethod()
         {
             return AccessTools.Method(typeof(ShootData), nameof(ShootData.method_6));

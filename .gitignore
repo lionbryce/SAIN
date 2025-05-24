@@ -365,3 +365,6 @@ FodyWeavers.xsd
 
 # SPT Build Script
 ServerMod/dist
+
+# Rider
+.idea/
