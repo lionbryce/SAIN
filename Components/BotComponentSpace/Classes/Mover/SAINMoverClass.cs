@@ -152,11 +152,14 @@ namespace SAIN.SAINComponent.Classes.Mover
                 return;
             }
             Vector3 position = Bot.Position;
-            if ((_prevLinkPos - position).sqrMagnitude > 0f)
+            if ((_prevLinkPos - position).sqrMagnitude > 0.01f)
             {
                 Vector3 castPoint = position + Vector3.up * 0.3f;
                 BotOwner.Mover.SetPlayerToNavMesh(castPoint);
                 _prevLinkPos = position;
+                
+                BotOwner.Mover.PositionOnWayInner = BotOwner.Mover.botOwner_0.Position;
+                BotOwner.Mover.botOwner_0.Mover.LocalAvoidance.DropOffset();
             }
         }
 
